@@ -1,0 +1,17 @@
+---
+- name: Add user to client hosts
+  hosts: ned-linux
+  tasks:
+   - name: "Ping"
+     ping:
+
+   - name: "Create user accounts and add users to groups"
+     user:
+      name: "{{ item.name }}"
+      uid: "{{ item.uid }}"
+      groups: "staff"
+      state: "absent"
+     #with_items: "{{ users }}"
+     with_items:
+        -  { name: dencio, uid: 5001 }
+        -  { name: dom, uid: 5002 }
